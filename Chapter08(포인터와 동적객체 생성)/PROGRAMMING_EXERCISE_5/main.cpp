@@ -1,41 +1,53 @@
 #include <iostream>
-
 using namespace std;
 
-class Line {
-	int* ptr;	// ¼±ÀÇ ±æÀÌ ÀúÀå
+class Student{
+    string name;
 public:
-	int getLength(void);
-	Line(int len);
-	Line(const Line& other);	// º¹»ç »ı¼ºÀÚ
-	~Line();
+    Student(string n=""): name{n}{}
+    ~Student(){}
+    string getName(){return name;}
+    void setName(string name) {this->name = name;}
 };
 
-// ÀÏ¹İ »ı¼ºÀÚ
-Line::Line(int len) {
-	cout << "ÀÏ¹İ »ı¼ºÀÚ" << endl;
-	ptr = new int;
-	*ptr = len;
-}
+class MyClass{
+    string className;
+    Student* p;
+    int size;
+    static int count;
+public:
+    MyClass(string c="", int s=0, Student* p_s=nullptr): className{c}, size{s},p{p_s} {
+        p = new Student[size];
+    }
+    ~MyClass(){delete[] p;}
+    void addStudent(Student* student_p){
+        p[count] = *student_p;      // ê°’ì„ ë„£ê¸° ìœ„í•´ì„œ *, ë°°ì—´ ìë£Œí˜• í¬ì¸í„°ì´ê¸° ë•Œë¬¸ì— **ë¡œ ë“¤ì–´ê°
+        count++;
+    }
+    void print(){
+        cout << "className: " << className << endl;
+        for(int i=0;i<size;i++)
+            cout << "Student: " << p[i].getName() << endl;      // í¬ì¸í„° ë°°ì—´ì—ì„œ ë©¤ë²„ í•¨ìˆ˜ ì ‘ê·¼
+        cout << "size: " << size << endl;
+    }
+};
 
-Line::Line(const Line& other) {
-	cout << "º¹»ç »ı¼ºÀÚ" << endl;
-	this->ptr = new int;		// µ¿ÀûÇÒ´çÀ¸·Î º¹»çÇÒ °ÍÀ» ÀúÀåÇÒ °ø°£ »ı¼º
-	this->ptr = other.ptr;		// µ¿ÀûÇÒ´ç µÈ °ø°£¿¡ º¹»çÇÒ °´Ã¼ ³Ö±â
-}
+int MyClass::count = 0;
 
-int Line::getLength() {
-	return *ptr;
-}
+int main(){
+    Student *hong = new Student("í™ê¸¸ë™"); 
+    Student *kim = new Student("ê¹€ì² ìˆ˜"); 
+    Student *choi = new Student("ìµœìì˜"); 
 
-int main() {
-	Line line1(10); // ÀÏ¹İ »ı¼ºÀÚ È£Ãâ
-	Line line2(line1); // º¹»ç »ı¼ºÀÚ È£Ãâ, line1À» ±â¹İÀ¸·Î line2¸¦ »ı¼º
-	Line line3(line2); // º¹»ç »ı¼ºÀÚ È£Ãâ, line2¸¦ ±â¹İÀ¸·Î line3À» »ı¼º
+    MyClass obj("special", 3);
+    obj.addStudent(hong);
+    obj.addStudent(kim);
+    obj.addStudent(choi);
+    obj.print();
 
-	cout << "¼±ÀÇ ±æÀÌ: " << line1.getLength() << endl;
-	cout << "¼±ÀÇ ±æÀÌ: " << line2.getLength() << endl;
-	cout << "¼±ÀÇ ±æÀÌ: " << line3.getLength() << endl;
+    delete hong;
+    delete kim;
+    delete choi;
+    return 0;
 
-	return 0;
 }
