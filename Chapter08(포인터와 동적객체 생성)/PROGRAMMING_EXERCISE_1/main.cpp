@@ -2,19 +2,19 @@
 
 using namespace std;
 
-// EXERCISE 11(Rect Å¬·¡½º, const ÃÖ´ëÇÑ Ãß°¡)
+// EXERCISE 11(Rect í´ë˜ìŠ¤, const ìµœëŒ€í•œ ì¶”ê°€)
 class Rect {
 	int width;
 	int height;
 public:
-	// Á¢±ÙÀÚ
+	// ì ‘ê·¼ì
 	int const get_width() { return width; }
 	int const get_height() { return height; }
-	int const getArea() { return (width * height); }	// ¸éÀû, const¸¦ ÅëÇØ ¸â¹öº¯¼ö º¯°æ X
-	int const getPerimeter() { return (width + height) * 2; }	// µÑ·¹, const¸¦ ÅëÇØ ¸â¹öº¯¼ö º¯°æ X
-	// ¼³Á¤ÀÚ
-	void set_width(const int w) { width = w; }	// ÇÔ¼ö ³»ºÎ¿¡¼­ w º¯°æ X
-	void set_height(const int h) { height = h; }	// ÇÔ¼ö ³»ºÎ¿¡¼­ h º¯°æ X
+	int const getArea() { return (width * height); }	// ë©´ì , constë¥¼ í†µí•´ ë©¤ë²„ë³€ìˆ˜ ë³€ê²½ X
+	int const getParameter() { return (width + height) * 2; }	// ë‘˜ë ˆ, constë¥¼ í†µí•´ ë©¤ë²„ë³€ìˆ˜ ë³€ê²½ X
+	// ì„¤ì •ì
+	void set_width(const int w) { width = w; }	// í•¨ìˆ˜ ë‚´ë¶€ì—ì„œ w ë³€ê²½ X
+	void set_height(const int h) { height = h; }	// í•¨ìˆ˜ ë‚´ë¶€ì—ì„œ h ë³€ê²½ X
 	void print() { cout << "width : " << width << " height : " << height << endl; }
 
 	// EXERCISE 15
@@ -26,8 +26,8 @@ public:
 
 	};
 	// EXERCISE 16
-	// ÂüÁ¶¸¦ ÅëÇØ ½ÇÇàµÇ±â ¶§¹®¿¡ °´Ã¼ º¹»ç¸¦ ½ÃÇàÇÏÁö ¾Ê¾Æ ºü¸£°í ¸Ş¸ğ¸® È¿À²ÀûÀÓ
-	// ÂüÁ¶¸¦ ÅëÇØ ½ÇÇàµÇ±â ¶§¹®¿¡ °ªÀ» º¯°æÇÒ ¼öµµ ÀÖÁö¸¸ constÁöÁ¤À» ÇØÁÖ¾î¾ß ÇÔ.
+	// ì°¸ì¡°ë¥¼ í†µí•´ ì‹¤í–‰ë˜ê¸° ë•Œë¬¸ì— ê°ì²´ ë³µì‚¬ë¥¼ ì‹œí–‰í•˜ì§€ ì•Šì•„ ë¹ ë¥´ê³  ë©”ëª¨ë¦¬ íš¨ìœ¨ì ì„
+	// ì°¸ì¡°ë¥¼ í†µí•´ ì‹¤í–‰ë˜ê¸° ë•Œë¬¸ì— ê°’ì„ ë³€ê²½í•  ìˆ˜ë„ ìˆì§€ë§Œ constì§€ì •ì„ í•´ì£¼ì–´ì•¼ í•¨.
 	bool is_equal(Rect& r1, Rect& r2) { // const Rect& r1, const Rect& r2
 		if ((r1.get_width() == r2.get_width()) && (r1.get_height() == r2.get_height()))
 			return true;
@@ -37,41 +37,41 @@ public:
 
 };
 
-// PROGRAMMING_EXERCISE 5¹ø
+// PROGRAMMING_EXERCISE 5ë²ˆ
 class Student {
 	string name;
 public:
 	Student(string name = "") : name{ name } {}
 	string getName() { return name; }
-	void setName(string name) { this->name = name; }	// ¸Å°³º¯¼ö nameÀ» StudentÀÇ ¸â¹ö º¯¼ö °ª ÀúÀå
+	void setName(string name) { this->name = name; }	// ë§¤ê°œë³€ìˆ˜ nameì„ Studentì˜ ë©¤ë²„ ë³€ìˆ˜ ê°’ ì €ì¥
 };
 
 int main() {
 
 	int* p = nullptr;
 	int i;
-	cout << "¸î °³ÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÕ´Ï±î? ";
+	cout << "ëª‡ ê°œì˜ ì •ìˆ˜ë¥¼ ì…ë ¥í•©ë‹ˆê¹Œ? ";
 	cin >> i;
 
-	p = new int[i];	// i Å©±âÀÇ µ¿Àû ¹è¿­ »ı¼º
+	p = new int[i];	// i í¬ê¸°ì˜ ë™ì  ë°°ì—´ ìƒì„±
 
-	for (int j = 0; j < i; j++) {	// Á¤¼ö ÀÔ·Â
+	for (int j = 0; j < i; j++) {	// ì •ìˆ˜ ì…ë ¥
 		int num;
-		cout << "Á¤¼ö¸¦ ÀÔ·ÂÇÏ½Ã¿À : ";
+		cout << "ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ : ";
 		cin >> num;
 
 		p[j] = num;
 	}
 
-	cout << "ÀÔ·ÂµÈ Á¤¼ö´Â: ";
-	for (int j = 0; j < i; j++) {	// Ãâ·Â
+	cout << "ì…ë ¥ëœ ì •ìˆ˜ëŠ”: ";
+	for (int j = 0; j < i; j++) {	// ì¶œë ¥
 		cout << p[j];
-		if (!(j == i - 1))	// ¸¶Áö¸· ¼ıÀÚ¿¡´Â , Ãâ·Â X
+		if (!(j == i - 1))	// ë§ˆì§€ë§‰ ìˆ«ìì—ëŠ” , ì¶œë ¥ X
 			cout << ",";
 	}
 	cout << endl;
 
-	delete[] p;		// µ¿Àû ¹è¿­ ¸Ş¸ğ¸® ¹İÈ¯
+	delete[] p;		// ë™ì  ë°°ì—´ ë©”ëª¨ë¦¬ ë°˜í™˜
 
 	return 0;
 }
