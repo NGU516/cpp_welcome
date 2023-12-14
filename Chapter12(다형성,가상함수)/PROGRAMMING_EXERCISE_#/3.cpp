@@ -6,29 +6,29 @@ protected:
 	int price;
 public:
 	HomeAppliance(int p):price(p){}
-	virtual ~HomeAppliance() { cout << "HomeAppliance ¼Ò¸êÀÚ" << endl; }
-	virtual double getPrice() = 0;	// ¼ø¼ö °¡»ó ÇÔ¼ö
+	virtual ~HomeAppliance() { cout << "HomeAppliance ì†Œë©¸ìž" << endl; }
+	virtual double getPrice() = 0;	// ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜
 };
 
 class Television :public HomeAppliance {
 public:
 	Television(int price): HomeAppliance(price) {}
-	~Television() { cout << "Television ¼Ò¸êÀÚ" << endl; }
-	double getPrice() { return price - ((10.0 / 100.0) * price); }	// 10% ÇÒÀÎ
+	~Television() { cout << "Television ì†Œë©¸ìž" << endl; }
+	double getPrice() { return price - ((10.0 / 100.0) * price); }	// 10% í• ì¸
 };
 
 class Refrigerator :public HomeAppliance {
 public:
 	Refrigerator(int price): HomeAppliance(price) {}
-	~Refrigerator() { cout << "Refrigerator ¼Ò¸êÀÚ" << endl; }
-	double getPrice(){return price - ((5.0 / 100.0) * price); }	// 5% ÇÒÀÎ
+	~Refrigerator() { cout << "Refrigerator ì†Œë©¸ìž" << endl; }
+	double getPrice(){return price - ((5.0 / 100.0) * price); }	// 5% í• ì¸
 };
 
 int main() {
-	Television a(100000);
-	cout << "°¡°Ý: " << a.getPrice() << endl;
-	Refrigerator b(200000);
-	cout << "°¡°Ý: " << b.getPrice() << endl;
+	HomeAppliance *a = new Television(100000);
+	cout << "ê°€ê²©: " << a->getPrice() << endl;
+	HomeAppliance *b = new Refrigerator(200000);
+	cout << "ê°€ê²©: " << b->getPrice() << endl;
 
 	return 0;
 }
