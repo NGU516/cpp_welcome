@@ -30,5 +30,7 @@ int main() {
 	HomeAppliance *b = new Refrigerator(200000);
 	cout << "가격: " << b->getPrice() << endl;
 
+    delete a;
+    delete b;
 	return 0;
 }
